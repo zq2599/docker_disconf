@@ -12,7 +12,7 @@ services:
   disconf_mysql: 
     image: bolingcavalry_disconf_mysql:0.0.1
     environment:
-      MYSQL_ROOT_PASSWORD: 888888
+      MYSQL_ROOT_PASSWORD: 123456
     restart: always
   disconf_tomcat: 
     image: bolingcavalry_disconf_tomcat:0.0.1
