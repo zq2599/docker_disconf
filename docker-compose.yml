@@ -10,12 +10,12 @@ services:
     image: zookeeper:3.3.6
     restart: always
   disconf_mysql: 
-    image: bolingcavalry_disconf_mysql:0.0.1
+    image: bolingcavalry/disconf_mysql:0.0.1
     environment:
       MYSQL_ROOT_PASSWORD: 123456
     restart: always
   disconf_tomcat: 
-    image: bolingcavalry_disconf_tomcat:0.0.1
+    image: bolingcavalry/disconf_tomcat:0.0.1
     links: 
       - disconf_redis_1:redishost001 
       - disconf_redis_2:redishost002
@@ -23,7 +23,7 @@ services:
       - disconf_mysql:mysqlhost
     restart: always
   disconf_nginx: 
-    image: bolingcavalry_disconf_nginx:0.0.1
+    image: bolingcavalry/disconf_nginx:0.0.1
     links: 
       - disconf_tomcat:tomcathost 
     ports: 
