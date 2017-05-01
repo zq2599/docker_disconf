@@ -1,0 +1,31 @@
+version: '2'
+services:
+  disconf_redis_1: 
+    image: daocloud.io/library/redis
+    restart: always
+  disconf_redis_2: 
+    image: daocloud.io/library/redis
+    restart: always
+  disconf_zookeeper: 
+    image: zookeeper:3.3.6
+    restart: always
+  disconf_mysql: 
+    image: bolingcavalry_disconf_mysql:0.0.1
+    environment:
+      MYSQL_ROOT_PASSWORD: 888888
+    restart: always
+  disconf_tomcat: 
+    image: bolingcavalry_disconf_tomcat:0.0.1
+    links: 
+      - disconf_redis_1:redishost001 
+      - disconf_redis_2:redishost002
+      - disconf_zookeeper:zkhost
+      - disconf_mysql:mysqlhost
+    restart: always
+  disconf_nginx: 
+    image: bolingcavalry_disconf_nginx:0.0.1
+    links: 
+      - disconf_tomcat:tomcathost 
+    ports: 
+      - "80:80" 
+    restart: always
